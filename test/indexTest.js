@@ -1,10 +1,6 @@
 require ( './helpers.js' );
 
 describe('employees', function() {
-  const employee = {
-    name: 'Ozlem',
-    streetAddress: '15 Broadway'
-  }
   describe('updateEmployeeWithKeyAndValue(employee, key, value)', function () {
     beforeEach(function () {
       for (const key in employee) {
@@ -27,13 +23,6 @@ describe('employees', function() {
       expect(employee['streetAddress']).to.equal(undefined);
     });
   });
-  function updateEmployeeWithKeyAndValue(obj, key, value){
-    return {
-      ...obj,
-      [key]: value,
-    };
-  }
-  const updateEmployee = updateEmployeeWithKeyAndValue(employee, 'streetAddress', '11 Broadway');
 
   describe('destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value)', function () {
     it('updates `employee` with the given `key` and `value` (it is destructive) and returns the entire updated employee', function () {
@@ -48,11 +37,6 @@ describe('employees', function() {
       });
     });
   });
-  function destructivelyUpdateEmployeeWithKeyAndValue(obj, key, value){
-    obj[key] = value;
-    return obj;
-  }
-  const destUpEmployee = destructivelyUpdateEmployeeWithKeyAndValue(employee, 'streetAddress', '12 Broadway');
 
   describe('deleteFromEmployeeByKey(employee, key)', function () {
     it('deletes `key` from a clone of employee and returns the new employee (it is non-destructive)', function () {
@@ -68,13 +52,6 @@ describe('employees', function() {
       expect(employee['name']).to.equal('Sam');
     });
   });
-  function deleteFromEmployeeByKey(obj, key, value){
-    return {
-      ...obj,
-      [key]: value,
-    };
-  }
-  const deleteEmployee = deleteFromEmployeeByKey(employee, 'name', undefined);
 
   describe('destructivelyDeleteFromEmployeeByKey(employee, key)', function () {
     it('returns employee without the deleted key/value pair', function () {
@@ -90,9 +67,4 @@ describe('employees', function() {
       expect(employee).to.equal(newEmployee);
     });
   });
-  function destructivelyDeleteFromEmployeeByKey(obj, key, value){
-    obj[key] = value;
-    return obj;
-  }
-  const destDelEmployee = destructivelyDeleteFromEmployeeByKey(employee, 'name', 'undefined');
 });
